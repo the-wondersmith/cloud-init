@@ -420,7 +420,7 @@
         ]
       }
     },
-    "merge_defintion": {
+    "merge_definition": {
       "oneOf": [
         {
           "type": "string"
@@ -483,10 +483,10 @@
           "description": "The launch index for the specified cloud-config."
         },
         "merge_how": {
-          "$ref": "#/$defs/merge_defintion"
+          "$ref": "#/$defs/merge_definition"
         },
         "merge_type": {
-          "$ref": "#/$defs/merge_defintion"
+          "$ref": "#/$defs/merge_definition"
         }
       }
     },
@@ -2252,7 +2252,7 @@
             },
             "conf": {
               "type": "object",
-              "description": "Every key present in the conf object will be added to puppet.conf. As such, section names should be one of: ``main``, ``server``, ``agent`` or ``user`` and keys should be valid puppet configuration options. The configuration is specified as a dictionary containing high-level ``<section>`` keys and lists of ``<key>=<value>`` pairs within each section. The ``certname`` key supports string substitutions for ``%i`` and ``%f``, corresponding to the instance id and fqdn of the machine respectively.\n\n``ca_cert`` is a special case. It won't be added to puppet.conf. It holds the puppetserver certificate in pem format. It should be a multi-line string (using the | YAML notation for multi-line strings).",
+              "description": "Every key present in the conf object will be added to puppet.conf. As such, section names should be one of: ``main``, ``server``, ``agent`` or ``user`` and keys should be valid puppet configuration options. The configuration is specified as a dictionary containing high-level ``<section>`` keys and lists of ``<key>=<value>`` pairs within each section. The ``certname`` key supports string substitutions for ``%i`` and ``%f``, corresponding to the instance id and fqdn of the machine respectively.\n\n``ca_cert`` is a special case. It won't be added to puppet.conf. It holds the puppet server certificate in pem format. It should be a multi-line string (using the | YAML notation for multi-line strings).",
               "additionalProperties": false,
               "properties": {
                 "main": {
@@ -3404,7 +3404,7 @@
                   "baseurl": {
                     "type": "string",
                     "format": "uri",
-                    "description": "The base repositoy URL"
+                    "description": "The base repository URL"
                   }
                 },
                 "required": [
@@ -3416,7 +3416,7 @@
             },
             "config": {
               "type": "object",
-              "description": "Any supported zypo.conf key is written to ``/etc/zypp/zypp.conf``"
+              "description": "Any supported zypp.conf key is written to ``/etc/zypp/zypp.conf``"
             }
           }
         }
@@ -3430,7 +3430,7 @@
         },
         {
           "type": "array",
-          "description": "A list specifying filepath operation configuration for stdout and stderror",
+          "description": "A list specifying filepath operation configuration for stdout and stderr",
           "items": {
             "type": [
               "string"
