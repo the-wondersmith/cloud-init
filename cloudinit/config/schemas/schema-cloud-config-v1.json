@@ -3777,102 +3777,666 @@
     }
   ],
   "properties": {
-    "allow_public_ssh_keys": {},
-    "ansible": {},
-    "apk_repos": {},
-    "apt": {},
-    "apt_pipelining": {},
-    "apt_reboot_if_required": {},
-    "apt_update": {},
-    "apt_upgrade": {},
-    "authkey_hash": {},
-    "autoinstall": {},
-    "bootcmd": {},
-    "byobu_by_default": {},
-    "ca-certs": {},
-    "ca_certs": {},
-    "chef": {},
-    "chpasswd": {},
-    "cloud_config_modules": {},
-    "cloud_final_modules": {},
-    "cloud_init_modules": {},
-    "create_hostname_file": {},
-    "device_aliases": {},
-    "disable_ec2_metadata": {},
-    "disable_root": {},
-    "disable_root_opts": {},
-    "disk_setup": {},
-    "drivers": {},
-    "fan": {},
-    "final_message": {},
-    "fqdn": {},
-    "fs_setup": {},
-    "groups": {},
-    "growpart": {},
-    "grub-dpkg": {},
-    "grub_dpkg": {},
-    "hostname": {},
-    "keyboard": {},
-    "landscape": {},
-    "launch-index": {},
-    "locale": {},
-    "locale_configfile": {},
-    "lxd": {},
-    "manage_etc_hosts": {},
-    "manage_resolv_conf": {},
-    "mcollective": {},
-    "merge_how": {},
-    "merge_type": {},
+    "allow_public_ssh_keys": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/allow_public_ssh_keys"
+        }
+      ]
+    },
+    "ansible": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ansible/properties/ansible"
+        }
+      ]
+    },
+    "apk_repos": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_apk_configure/properties/apk_repos"
+        }
+      ]
+    },
+    "apt": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_apt_configure/properties/apt"
+        }
+      ]
+    },
+    "apt_pipelining": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_apt_pipelining/properties/apt_pipelining"
+        }
+      ]
+    },
+    "apt_reboot_if_required": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_package_update_upgrade_install/properties/apt_reboot_if_required"
+        }
+      ]
+    },
+    "apt_update": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_package_update_upgrade_install/properties/apt_update"
+        }
+      ]
+    },
+    "apt_upgrade": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_package_update_upgrade_install/properties/apt_upgrade"
+        }
+      ]
+    },
+    "authkey_hash": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh_authkey_fingerprints/properties/authkey_hash"
+        }
+      ]
+    },
+    "autoinstall": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ubuntu_autoinstall/properties/autoinstall"
+        }
+      ]
+    },
+    "bootcmd": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_bootcmd/properties/bootcmd"
+        }
+      ]
+    },
+    "byobu_by_default": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_byobu/properties/byobu_by_default"
+        }
+      ]
+    },
+    "ca-certs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ca_certs/properties/ca-certs"
+        }
+      ]
+    },
+    "ca_certs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ca_certs/properties/ca_certs"
+        }
+      ]
+    },
+    "chef": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_chef/properties/chef"
+        }
+      ]
+    },
+    "chpasswd": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_set_passwords/properties/chpasswd"
+        }
+      ]
+    },
+    "cloud_config_modules": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_config/properties/cloud_config_modules"
+        }
+      ]
+    },
+    "cloud_final_modules": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_config/properties/cloud_final_modules"
+        }
+      ]
+    },
+    "cloud_init_modules": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_config/properties/cloud_init_modules"
+        }
+      ]
+    },
+    "create_hostname_file": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_update_hostname/properties/create_hostname_file"
+        }
+      ]
+    },
+    "device_aliases": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_disk_setup/properties/device_aliases"
+        }
+      ]
+    },
+    "disable_ec2_metadata": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_disable_ec2_metadata/properties/disable_ec2_metadata"
+        }
+      ]
+    },
+    "disable_root": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/disable_root"
+        }
+      ]
+    },
+    "disable_root_opts": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/disable_root_opts"
+        }
+      ]
+    },
+    "disk_setup": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_disk_setup/properties/disk_setup"
+        }
+      ]
+    },
+    "drivers": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ubuntu_drivers/properties/drivers"
+        }
+      ]
+    },
+    "fan": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_fan/properties/fan"
+        }
+      ]
+    },
+    "final_message": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_final_message/properties/final_message"
+        }
+      ]
+    },
+    "fqdn": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_set_hostname/properties/fqdn"
+        }
+      ]
+    },
+    "fs_setup": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_disk_setup/properties/fs_setup"
+        }
+      ]
+    },
+    "groups": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_users_groups/properties/groups"
+        }
+      ]
+    },
+    "growpart": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_growpart/properties/growpart"
+        }
+      ]
+    },
+    "grub-dpkg": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_grub_dpkg/properties/grub-dpkg"
+        }
+      ]
+    },
+    "grub_dpkg": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_grub_dpkg/properties/grub_dpkg"
+        }
+      ]
+    },
+    "hostname": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_set_hostname/properties/hostname"
+        }
+      ]
+    },
+    "keyboard": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_keyboard/properties/keyboard"
+        }
+      ]
+    },
+    "landscape": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_landscape/properties/landscape"
+        }
+      ]
+    },
+    "launch-index": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_config/properties/launch-index"
+        }
+      ]
+    },
+    "locale": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_locale/properties/locale"
+        }
+      ]
+    },
+    "locale_configfile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_locale/properties/locale_configfile"
+        }
+      ]
+    },
+    "lxd": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_lxd/properties/lxd"
+        }
+      ]
+    },
+    "manage_etc_hosts": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_update_etc_hosts/properties/manage_etc_hosts"
+        }
+      ]
+    },
+    "manage_resolv_conf": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_resolv_conf/properties/manage_resolv_conf"
+        }
+      ]
+    },
+    "mcollective": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_mcollective/properties/mcollective"
+        }
+      ]
+    },
+    "merge_how": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_config/properties/merge_how"
+        }
+      ]
+    },
+    "merge_type": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base_config/properties/merge_type"
+        }
+      ]
+    },
     "migrate": {},
-    "mount_default_fields": {},
-    "mounts": {},
-    "no_ssh_fingerprints": {},
-    "ntp": {},
-    "output": {},
-    "package_reboot_if_required": {},
-    "package_update": {},
-    "package_upgrade": {},
-    "packages": {},
-    "password": {},
-    "phone_home": {},
-    "power_state": {},
-    "prefer_fqdn_over_hostname": {},
-    "preserve_hostname": {},
-    "puppet": {},
-    "random_seed": {},
-    "reporting": {},
-    "resize_rootfs": {},
-    "resolv_conf": {},
-    "rh_subscription": {},
-    "rsyslog": {},
-    "runcmd": {},
-    "salt_minion": {},
-    "snap": {},
-    "spacewalk": {},
-    "ssh": {},
-    "ssh_authorized_keys": {},
-    "ssh_deletekeys": {},
-    "ssh_fp_console_blacklist": {},
-    "ssh_genkeytypes": {},
-    "ssh_import_id": {},
-    "ssh_key_console_blacklist": {},
-    "ssh_keys": {},
-    "ssh_publish_hostkeys": {},
-    "ssh_pwauth": {},
-    "ssh_quiet_keygen": {},
-    "swap": {},
-    "timezone": {},
-    "ubuntu_advantage": {},
-    "updates": {},
-    "user": {},
-    "users": {},
-    "vendor_data": {},
+    "mount_default_fields": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_mounts/properties/mount_default_fields"
+        }
+      ]
+    },
+    "mounts": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_mounts/properties/mounts"
+        }
+      ]
+    },
+    "no_ssh_fingerprints": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh_authkey_fingerprints/properties/no_ssh_fingerprints"
+        }
+      ]
+    },
+    "ntp": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ntp/properties/ntp"
+        }
+      ]
+    },
+    "output": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/output_config/properties/output"
+        }
+      ]
+    },
+    "package_reboot_if_required": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_package_update_upgrade_install/properties/package_reboot_if_required"
+        }
+      ]
+    },
+    "package_update": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_package_update_upgrade_install/properties/package_update"
+        }
+      ]
+    },
+    "package_upgrade": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_package_update_upgrade_install/properties/package_upgrade"
+        }
+      ]
+    },
+    "packages": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_package_update_upgrade_install/properties/packages"
+        }
+      ]
+    },
+    "password": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_set_passwords/properties/password"
+        }
+      ]
+    },
+    "phone_home": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_phone_home/properties/phone_home"
+        }
+      ]
+    },
+    "power_state": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_power_state_change/properties/power_state"
+        }
+      ]
+    },
+    "prefer_fqdn_over_hostname": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_set_hostname/properties/prefer_fqdn_over_hostname"
+        }
+      ]
+    },
+    "preserve_hostname": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_set_hostname/properties/preserve_hostname"
+        }
+      ]
+    },
+    "puppet": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_puppet/properties/puppet"
+        }
+      ]
+    },
+    "random_seed": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_seed_random/properties/random_seed"
+        }
+      ]
+    },
+    "reporting": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/reporting_config/properties/reporting"
+        }
+      ]
+    },
+    "resize_rootfs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_resizefs/properties/resize_rootfs"
+        }
+      ]
+    },
+    "resolv_conf": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_resolv_conf/properties/resolv_conf"
+        }
+      ]
+    },
+    "rh_subscription": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_rh_subscription/properties/rh_subscription"
+        }
+      ]
+    },
+    "rsyslog": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_rsyslog/properties/rsyslog"
+        }
+      ]
+    },
+    "runcmd": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_runcmd/properties/runcmd"
+        }
+      ]
+    },
+    "salt_minion": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_salt_minion/properties/salt_minion"
+        }
+      ]
+    },
+    "snap": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_snap/properties/snap"
+        }
+      ]
+    },
+    "spacewalk": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_spacewalk/properties/spacewalk"
+        }
+      ]
+    },
+    "ssh": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh"
+        }
+      ]
+    },
+    "ssh_authorized_keys": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/ssh_authorized_keys"
+        }
+      ]
+    },
+    "ssh_deletekeys": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/ssh_deletekeys"
+        }
+      ]
+    },
+    "ssh_fp_console_blacklist": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_keys_to_console/properties/ssh_fp_console_blacklist"
+        }
+      ]
+    },
+    "ssh_genkeytypes": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/ssh_genkeytypes"
+        }
+      ]
+    },
+    "ssh_import_id": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh_import_id/properties/ssh_import_id"
+        }
+      ]
+    },
+    "ssh_key_console_blacklist": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_keys_to_console/properties/ssh_key_console_blacklist"
+        }
+      ]
+    },
+    "ssh_keys": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/ssh_keys"
+        }
+      ]
+    },
+    "ssh_publish_hostkeys": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/ssh_publish_hostkeys"
+        }
+      ]
+    },
+    "ssh_pwauth": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_set_passwords/properties/ssh_pwauth"
+        }
+      ]
+    },
+    "ssh_quiet_keygen": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ssh/properties/ssh_quiet_keygen"
+        }
+      ]
+    },
+    "swap": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_mounts/properties/swap"
+        }
+      ]
+    },
+    "timezone": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_timezone/properties/timezone"
+        }
+      ]
+    },
+    "ubuntu_advantage": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_ubuntu_advantage/properties/ubuntu_advantage"
+        }
+      ]
+    },
+    "updates": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_install_hotplug/properties/updates"
+        }
+      ]
+    },
+    "user": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_users_groups/properties/user"
+        }
+      ]
+    },
+    "users": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_users_groups/properties/users"
+        }
+      ]
+    },
+    "vendor_data": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_scripts_vendor/properties/vendor_data"
+        }
+      ]
+    },
     "version": {},
-    "wireguard": {},
-    "write_files": {},
-    "yum_repo_dir": {},
-    "yum_repos": {},
-    "zypper": {}
+    "wireguard": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_wireguard/properties/wireguard"
+        }
+      ]
+    },
+    "write_files": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_write_files/properties/write_files"
+        }
+      ]
+    },
+    "yum_repo_dir": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_yum_add_repo/properties/yum_repo_dir"
+        }
+      ]
+    },
+    "yum_repos": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_yum_add_repo/properties/yum_repos"
+        }
+      ]
+    },
+    "zypper": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/cc_zypper_add_repo/properties/zypper"
+        }
+      ]
+    }
   },
   "additionalProperties": false
 }
