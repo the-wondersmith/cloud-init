@@ -890,36 +890,177 @@
             },
             "sources": {
               "type": "object",
-              "additionalProperties": false,
-              "patternProperties": {
-                "^.+$": {
+              "$defs": {
+                "common": {
                   "type": "object",
-                  "additionalProperties": false,
                   "properties": {
-                    "source": {
-                      "type": "string"
-                    },
-                    "keyid": {
-                      "type": "string"
-                    },
-                    "key": {
-                      "type": "string"
-                    },
-                    "keyserver": {
-                      "type": "string"
-                    },
                     "filename": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The on-disk name of the `sources` list file to create or update",
+                      "examples": [
+                        "my-apt-source",
+                        "another-source.list"
+                      ]
                     },
                     "append": {
                       "type": "boolean",
-                      "default": true
+                      "default": true,
+                      "description": "If true, indicates that the defined source should be appended to the appropriate `sources` file. If false, the relevant `sources` file will be overwritten instead.",
+                      "examples": [
+                        true,
+                        false
+                      ]
                     }
-                  },
-                  "minProperties": 1
+                  }
+                },
+                "ppa-source": {
+                  "type": "object",
+                  "required": [
+                    "source"
+                  ],
+                  "properties": {
+                    "source": {
+                      "type": "string",
+                      "pattern": "^ppa:[a-zA-Z0-9_-]+(/[a-zA-Z0-9_-]+)*$",
+                      "description": "A Ubuntu Personal Package Archive",
+                      "examples": [
+                        "ppa:some-ppa/main",
+                        "ppa:my-awesome-ppa/experimental"
+                      ]
+                    }
+                  }
+                },
+                "deb-source": {
+                  "type": "object",
+                  "required": [
+                    "source"
+                  ],
+                  "properties": {
+                    "source": {
+                      "type": "string",
+                      "pattern": "^deb(-src)? ",
+                      "description": "",
+                      "examples": [
+                        "deb https://packages.some-apt-repo.com/apt widgets components",
+                        "deb-src https://packages.some-apt-repo.com/apt source-code"
+                      ]
+                    }
+                  }
                 }
               },
-              "description": "Source list entries can be specified as a dictionary under the ``sources`` config key, with each key in the dict representing a different source file. The key of each source entry will be used as an id that can be referenced in other config entries, as well as the filename for the source's configuration under ``/etc/apt/sources.list.d``. If the name does not end with ``.list``, it will be appended. If there is no configuration for a key in ``sources``, no file will be written, but the key may still be referred to as an id in other ``sources`` entries.\n\nEach entry under ``sources`` is a dictionary which may contain any of the following optional keys:\n - ``source``: a sources.list entry (some variable replacements apply).\n - ``keyid``: a key to import via shortid or fingerprint.\n - ``key``: a raw PGP key.\n - ``keyserver``: alternate keyserver to pull ``keyid`` key from.\n - ``filename``: specify the name of the list file.\n - ``append``: If ``true``, append to sources file, otherwise overwrite it. Default: ``true``.\n\nThe ``source`` key supports variable replacements for the following strings:\n\n - ``$MIRROR``\n - ``$PRIMARY``\n - ``$SECURITY``\n - ``$RELEASE``\n - ``$KEY_FILE``"
+              "patternProperties": {
+                "^.+$": {
+                  "type": "object",
+                  "minProperties": 1,
+                  "maxProperties": 5,
+                  "anyOf": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/common"
+                        },
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/deb-source"
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/common"
+                        },
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/ppa-source"
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/common"
+                        },
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/deb-source"
+                        },
+                        {
+                          "required": [
+                            "key"
+                          ],
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "description": "a raw PGP key",
+                              "examples": []
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/common"
+                        },
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/deb-source"
+                        },
+                        {
+                          "required": [
+                            "keyid"
+                          ],
+                          "properties": {
+                            "keyid": {
+                              "type": "string",
+                              "pattern": "^(?i:([0-9a-f]{16})|([0-9a-f]{40}))$",
+                              "description": "A GPG key to import via shortid or fingerprint",
+                              "examples": [
+                                "B53DC80D13EDEF05",
+                                "1548BC8A4B4D2688F9B0DAF7EC29E2090CE3FD43"
+                              ]
+                            },
+                            "keyserver": {
+                              "type": "string",
+                              "description": "An alternate keyserver to pull `keyid` key from",
+                              "examples": [
+                                "keys.openpgp.org",
+                                "hkp://keyring.debian.org",
+                                "hkps://keyserver.ubuntu.com"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/common"
+                        },
+                        {
+                          "$ref": "#/$defs/cc_apt_configure/properties/apt/properties/sources/$defs/deb-source"
+                        },
+                        {
+                          "required": [
+                            "keyurl"
+                          ],
+                          "properties": {
+                            "keyurl": {
+                              "type": "string",
+                              "pattern": "^https?://\\S+$",
+                              "description": "A remote HTTP(S) server to fetch the source's GPG key from",
+                              "examples": [
+                                "https://packages.example.com/apt/apt-key.gpg",
+                                "https://raw.githubusercontent.com/example-org/example/main/deb.asc"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "description": "Source list entries can be specified as a dictionary under the ``sources`` config key, with each key in the dict representing a different source file. The key of each source entry will be used as an id that can be referenced in other config entries, as well as the filename for the source's configuration under ``/etc/apt/sources.list.d``. If the name does not end with ``.list``, it will be appended. If there is no configuration for a key in ``sources``, no file will be written, but the key may still be referred to as an id in other ``sources`` entries.\n\nEach entry under ``sources`` is a dictionary which may contain any of the following optional keys:\n - ``source``: a sources.list entry (some variable replacements apply).\n - ``key``: a raw PGP key.\n - ``keyurl``: an HTTP(S) url to fetch the source's GPG key from.\n - ``keyid``: a key to import via shortid or fingerprint.\n - ``keyserver``: alternate keyserver to pull ``keyid`` key from.\n - ``filename``: specify the name of the list file.\n - ``append``: If ``true``, append to sources file, otherwise overwrite it. Default: ``true``.\n\nThe ``source`` key supports variable replacements for the following strings:\n\n - ``$MIRROR``\n - ``$PRIMARY``\n - ``$SECURITY``\n - ``$RELEASE``\n - ``$KEY_FILE``"
             }
           }
         }
