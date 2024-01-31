@@ -1588,7 +1588,7 @@
                 "data_path": {
                   "type": "string",
                   "default": "/var/lib/landscape/client",
-                  "description": "The directory to store data files in. Default: ``/var/lib/land\u2010scape/client/``."
+                  "description": "The directory to store data files in. Default: ``/var/lib/land‐scape/client/``."
                 },
                 "log_level": {
                   "type": "string",
